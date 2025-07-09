@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Categorías de Ropa</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f9f9f9; margin: 0; padding: 20px; }
+    h1 { text-align: center; color: #333; }
+    .categorias { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+    .categoria {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 200px;
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .categoria:hover { transform: scale(1.05); }
+    .categoria img { width: 100%; border-radius: 5px; }
+    .categoria h2 { font-size: 1.2em; margin: 10px 0 5px; color: #444; }
+    .categoria p { font-size: 0.9em; color: #666; }
+  </style>
+</head>
+<body>
+  <h1>Categorías de Ropa</h1>
+  <div class="categorias">
+    <div class="categoria">
+      <img src="camisa1.jpg" alt="Camisetas">
+      <h2>Camisetas</h2>
+      <p>Estilos casuales y modernos para todos los días.</p>
+    </div>
+    <div class="categoria">
+      <img src="pantalon.jpg" alt="Pantalones">
+      <h2>Pantalones</h2>
+      <p>Desde jeans clásicos hasta pantalones elegantes.</p>
+    </div>
+    <div class="categoria">
+      <img src="vestidos.jpg" alt="Vestidos">
+      <h2>Vestidos</h2>
+      <p>Opciones para cada ocasión, desde lo casual hasta lo formal.</p>
+    </div>
+    <div class="categoria">
+      <img src="accesorios.jpg" alt="Accesorios">
+      <h2>Accesorios</h2>
+      <p>Complementa tu look con estilo.</p>
+    </div>
+  </div>
+</body>
+</html>

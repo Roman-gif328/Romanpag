@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --color-clifford: #black;
+    }
+}
+
+/* Custom Keyframe Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slideUpFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Adjust this value for how far it slides up */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tailwind Utility for custom animation */
+.animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+}
+.animate-slide-up-fade-in {
+    animation: slideUpFadeIn 0.8s ease-out forwards; /* Shorter duration for cards */
+}
+
+/* Styles for Categorías de Ropa */
+.categorias-section {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+}
+.categorias-section h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2.5em; /* Adjusted for better visual hierarchy */
+}
+.categorias {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+.categoria {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 220px; /* Slightly increased width */
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.2s;
+    box-sizing: border-box; /* Include padding in width */
+}
+.categoria:hover {
+    transform: scale(1.05);
+}
+.categoria img {
+    width: 100%;
+    border-radius: 5px;
+    height: 150px; /* Fixed height for consistent image size */
+    object-fit: cover; /* Ensures images cover the area without distortion */
+}
+.categoria h2 {
+    font-size: 1.3em; /* Slightly larger heading */
+    margin: 15px 0 8px; /* Adjusted margins */
+    color: #444;
+}
+.categoria p {
+    font-size: 1em; /* Slightly larger text */
+    color: #666;
+    line-height: 1.4;
+}
