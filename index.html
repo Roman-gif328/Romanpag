@@ -6,20 +6,30 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>Roman Store - Inicio</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Optional: Add a subtle hover effect for clickable categories/products */
+        .categoria, .product-item {
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+        .categoria:hover, .product-item:hover {
+            transform: translateY(-5px);
+        }
+    </style>
 </head>
 <body>
 
     <header class="absolute inset-x-0 top-0 z-50">
-        <nav class="flex items-center justify-between p-6 lg:px-8" aria-atomic="Global">
+        <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global navigation">
             <div class="flex lg:flex-1">
                 <a href="index.html" class="-m-1.5 p-1.5">
-                    <span class="sr-only">Your Company</span>
-                    <img class="h-8 w-auto" src="roman.jpg" alt="Roman Store Logo" />
-                    <img src="bandera.jpg" alt="Flag of Roman Store" class="inline h-8 w-8" />
+                    <span class="sr-only">Roman Store Home</span>
+                    <img class="h-8 w-auto" src="roman.jpg" alt="Roman Store logo" />
+                    <img src="bandera.jpg" alt="Flag of Colombia" class="inline h-8 w-8" />
                 </a>
             </div>
             <div class="flex lg:hidden">
-                <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+                <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" id="open-mobile-menu">
                     <span class="sr-only">Open main menu</span>
                     <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -33,19 +43,26 @@
                 <a href="novedades.html" class="text-sm/6 font-semibold text-gray-900">Novedades</a>
                 <a href="categorias.html" class="text-sm/6 font-semibold text-gray-900">Categorias</a>
             </div>
-            <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+            <div class="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-x-6">
                 <a href="#" class="text-sm/6 font-semibold text-gray-900">Iniciar Sesion <span aria-hidden="true">&rarr;</span></a>
+                <button type="button" class="relative p-2.5 text-gray-700" id="cart-button-desktop">
+                    <span class="sr-only">Ver carrito de compras</span>
+                    <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.023.828L5.176 10.5M16.082 18.886c.065.254.016.518-.076.757-.307.791-.982 1.373-1.95 1.373H9.75a1.5 1.5 0 0 1-1.474-1.684l1.049-9.102a1.5 1.5 0 0 1 1.474-1.316h7.594c.791.066 1.487.49 1.838 1.157L20.8 13.5M6 18H4.75a1.75 1.75 0 0 1-1.75-1.75V6.75c0-.966.784-1.75 1.75-1.75h3.5" />
+                    </svg>
+                    <span id="cart-item-count-desktop" class="absolute -top-1 -right-1 bg-indigo-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                </button>
             </div>
         </nav>
-        <div class="lg:hidden" role="dialog" aria-modal="true">
+        <div class="lg:hidden" role="dialog" aria-modal="true" id="mobile-menu-panel">
             <div class="fixed inset-0 z-50"></div>
             <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                 <div class="flex items-center justify-between">
                     <a href="#" class="-m-1.5 p-1.5">
-                        <span class="sr-only">Your Company</span>
-                        <img class="h-8 w-auto" src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+                        <span class="sr-only">Roman Store Home</span>
+                        <img class="h-8 w-auto" src="roman.jpg" alt="Roman Store logo" />
                     </a>
-                    <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
+                    <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700" id="close-mobile-menu">
                         <span class="sr-only">Cerrar menu</span>
                         <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -61,8 +78,15 @@
                             <a href="novedades.html" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Novedades</a>
                             <a href="categorias.html" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Categorias</a>
                         </div>
-                        <div class="py-6">
+                        <div class="py-6 flex items-center justify-between">
                             <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Iniciar Sesion</a>
+                            <button type="button" class="relative p-2.5 text-gray-700" id="cart-button-mobile">
+                                <span class="sr-only">Ver carrito de compras</span>
+                                <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.023.828L5.176 10.5M16.082 18.886c.065.254.016.518-.076.757-.307.791-.982 1.373-1.95 1.373H9.75a1.5 1.5 0 0 1-1.474-1.684l1.049-9.102a1.5 1.5 0 0 1 1.474-1.316h7.594c.791.066 1.487.49 1.838 1.157L20.8 13.5M6 18H4.75a1.75 1.75 0 0 1-1.75-1.75V6.75c0-.966.784-1.75 1.75-1.75h3.5" />
+                                </svg>
+                                <span id="cart-item-count-mobile" class="absolute -top-1 -right-1 bg-indigo-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -76,19 +100,21 @@
                 <div class="relative left-[calc(50%-11rem)] aspect-1155/678 w-144.5 -translate-x-1/2 rotate-30 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-288.75" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
             </div>
 
-            <img src="https://images.unsplash.com/photo-1543163521-1bf539c1776b?q=80&w=2600&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Elegant fashion display in a modern clothing store" class="absolute inset-x-0 top-0 z-10 mx-auto h-auto w-full max-h-96 object-cover" />
+            
 
 
             <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
                 <div class="hidden sm:mb-8 sm:flex sm:justify-center">
                     <div class="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                        New Collection Here. <a href="nueva-coleccion.html" class="font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
+                        Nueva Colección Disponible. <a href="nueva-coleccion.html" class="font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true"></span>Ver más <span aria-hidden="true">&rarr;</span></a>
                     </div>
                 </div>
                 <div class="text-center">
-                    <h1 class="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl"></h1>
+                    <h1 class="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl">
+                        Tu Estilo, Nuestra Pasión
+                    </h1>
                     <p class="mt-8 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">
-                        <img src="g-unit.jpg" alt="Roman Store" class="inline h-50 w-80" />
+                        <img src="g-unit.jpg" alt="G-Unit brand logo, representing a style collection" class="inline h-50 w-80" />
                     </p>
                     <div class="mt-10 flex items-center justify-center gap-x-6">
                         <a href="productos.html" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Comprar Ahora</a>
@@ -105,70 +131,201 @@
     <div class="categorias-section" id="categorias-section">
         <h1>Explora Nuestras Categorías</h1>
         <div class="categorias">
-            <a href="productos.html#camisetas" class="categoria">
+            <div class="categoria product-item" data-product-id="tshirt-casual" data-product-name="Camisetas Casuales" data-product-price="25.00">
                 <img src="camisacasual.jpg" alt="Variedad de camisetas casuales">
                 <h2>Camisetas</h2>
                 <p>Estilos casuales y modernos para todos los días.</p>
-            </a>
-            <a href="productos.html#pantalones" class="categoria">
+                <button class="add-to-cart-btn bg-indigo-500 text-white px-3 py-1 rounded mt-2 hover:bg-indigo-600">Añadir al Carrito</button>
+            </div>
+            <div class="categoria product-item" data-product-id="pants-jeans" data-product-name="Pantalones Jeans" data-product-price="50.00">
                 <img src="pantalon.jpg" alt="Pantalones jeans de moda">
                 <h2>Pantalones</h2>
                 <p>Desde jeans clásicos hasta pantalones elegantes.</p>
-            </a>
-            <a href="productos.html#vestidos" class="categoria">
+                <button class="add-to-cart-btn bg-indigo-500 text-white px-3 py-1 rounded mt-2 hover:bg-indigo-600">Añadir al Carrito</button>
+            </div>
+            <div class="categoria product-item" data-product-id="dresses-elegant" data-product-name="Vestidos Elegantes" data-product-price="75.00">
                 <img src="casual.jpg" alt="Vestidos elegantes y casuales">
                 <h2>Vestidos</h2>
                 <p>Opciones para cada ocasión, desde lo casual hasta lo formal.</p>
-            </a>
-            <a href="productos.html#accesorios" class="categoria">
+                <button class="add-to-cart-btn bg-indigo-500 text-white px-3 py-1 rounded mt-2 hover:bg-indigo-600">Añadir al Carrito</button>
+            </div>
+            <div class="categoria product-item" data-product-id="accessories-jewelry" data-product-name="Accesorios de Moda" data-product-price="15.00">
                 <img src="estilo.jpg" alt="Bolsos y joyería como accesorios de moda">
                 <h2>Accesorios</h2>
                 <p>Complementa tu look con estilo.</p>
-            </a>
+                <button class="add-to-cart-btn bg-indigo-500 text-white px-3 py-1 rounded mt-2 hover:bg-indigo-600">Añadir al Carrito</button>
+            </div>
         </div>
     </div>
     <div class="bg-gray-100">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
-                <h2 class="text-2xl font-bold text-gray-900" id="new-collection">Nueva Coleccion</h2>
+                <h2 class="text-2xl font-bold text-gray-900" id="new-collection">Nueva Colección</h2>
 
                 <div class="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:space-y-0 lg:gap-x-6">
-                    <div class="group relative opacity-0 translate-y-10 transition-all duration-1000 ease-out animate-on-scroll">
-                        <img src="niñosmoda.jpg" />
+                    <div class="group relative opacity-0 translate-y-10 transition-all duration-1000 ease-out animate-on-scroll product-item" data-product-id="kids-modern" data-product-name="Estilos Modernos para Niños" data-product-price="30.00">
+                        <img src="niñosmoda.jpg" alt="Niños y sus nuevos estilos: ropa moderna y colorida para niños.">
                         <h3 class="mt-6 text-sm text-gray-500">
-                            <a href="productos.html#ninos-estilos">
-                                <span class="absolute inset-0"></span>
-                                Niños Y Sus Nuevos Estilos
-                            </a>
+                            Niños Y Sus Nuevos Estilos
                         </h3>
-                        <p class="text-base font-semibold text-gray-900">Clasicos Modernos</p>
+                        <p class="text-base font-semibold text-gray-900">Clásicos Modernos</p>
+                        <button class="add-to-cart-btn bg-indigo-500 text-white px-3 py-1 rounded mt-2 hover:bg-indigo-600">Añadir al Carrito</button>
                     </div>
-                    <div class="group relative opacity-0 translate-y-10 transition-all duration-1000 ease-out animate-on-scroll">
-                        <img src="invierno.jpg" />
+                    <div class="group relative opacity-0 translate-y-10 transition-all duration-1000 ease-out animate-on-scroll product-item" data-product-id="winter-juvenile" data-product-name="Ropa de Invierno Juvenil" data-product-price="65.00">
+                        <img src="invierno.jpg" alt="Ropa de invierno juvenil: abrigos, suéteres y bufandas para jóvenes.">
                         <h3 class="mt-6 text-sm text-gray-500">
-                            <a href="productos.html#invierno-juvenil">
-                                <span class="absolute inset-0"></span>
-                                Ropa De Invierno Juvenil
-                            </a>
+                            Ropa De Invierno Juvenil
                         </h3>
-                        <p class="text-base font-semibold text-gray-900">Clasico habitual</p>
+                        <p class="text-base font-semibold text-gray-900">Clásico habitual</p>
+                        <button class="add-to-cart-btn bg-indigo-500 text-white px-3 py-1 rounded mt-2 hover:bg-indigo-600">Añadir al Carrito</button>
                     </div>
-                    <div class="group relative opacity-0 translate-y-10 transition-all duration-1000 ease-out animate-on-scroll">
-                        <img src="ropatipo80.jpg" />
+                    <div class="group relative opacity-0 translate-y-10 transition-all duration-1000 ease-out animate-on-scroll product-item" data-product-id="80s-style" data-product-name="Ropa Tipo 80s" data-product-price="40.00">
+                        <img src="ropatipo80.jpg" alt="Ropa estilo años 80: diseños retro con colores vivos y estampados audaces.">
                         <h3 class="mt-6 text-sm text-gray-500">
-                            <a href="productos.html#ropa-80s">
-                                <span class="absolute inset-0"></span>
-                                Ropa Tipo 80s
-                            </a>
+                            Ropa Tipo 80s
                         </h3>
-                        <p class="text-base font-semibold text-gray-900">Estilos Unicos</p>
+                        <p class="text-base font-semibold text-gray-900">Estilos Únicos</p>
+                        <button class="add-to-cart-btn bg-indigo-500 text-white px-3 py-1 rounded mt-2 hover:bg-indigo-600">Añadir al Carrito</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <div id="cart-overlay" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-6 rounded-lg shadow-xl w-96">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold">Tu Carrito de Compras</h2>
+                <button id="close-cart-overlay" class="text-gray-500 hover:text-gray-700">&times;</button>
+            </div>
+            <ul id="cart-items" class="list-disc pl-5 mb-4 max-h-60 overflow-y-auto">
+                </ul>
+            <p class="text-lg font-bold">Total: $<span id="cart-total">0.00</span></p>
+            <button class="w-full bg-indigo-600 text-white py-2 rounded-md mt-4 hover:bg-indigo-700">Proceder al Pago</button>
+        </div>
+    </div>
 
+
+    <script>
+        // Mobile menu toggle logic (existing from your original script.js if it handles this)
+        const openMobileMenuButton = document.getElementById('open-mobile-menu');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+        const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+
+        if (openMobileMenuButton && mobileMenuPanel) {
+            openMobileMenuButton.addEventListener('click', () => {
+                mobileMenuPanel.classList.remove('hidden');
+            });
+        }
+        if (closeMobileMenuButton && mobileMenuPanel) {
+            closeMobileMenuButton.addEventListener('click', () => {
+                mobileMenuPanel.classList.add('hidden');
+            });
+        }
+
+
+        // Shopping Cart Logic
+        let cart = []; // Array to store items in the cart
+
+        const cartItemCountDesktop = document.getElementById('cart-item-count-desktop');
+        const cartItemCountMobile = document.getElementById('cart-item-count-mobile');
+        const cartButtonDesktop = document.getElementById('cart-button-desktop');
+        const cartButtonMobile = document.getElementById('cart-button-mobile');
+        const cartOverlay = document.getElementById('cart-overlay');
+        const closeCartOverlay = document.getElementById('close-cart-overlay');
+        const cartItemsList = document.getElementById('cart-items');
+        const cartTotalSpan = document.getElementById('cart-total');
+
+        function updateCartCount() {
+            const itemCount = cart.length;
+            if (itemCount > 0) {
+                cartItemCountDesktop.textContent = itemCount;
+                cartItemCountDesktop.classList.remove('hidden');
+                cartItemCountMobile.textContent = itemCount;
+                cartItemCountMobile.classList.remove('hidden');
+            } else {
+                cartItemCountDesktop.classList.add('hidden');
+                cartItemCountMobile.classList.add('hidden');
+            }
+        }
+
+        function renderCartItems() {
+            cartItemsList.innerHTML = ''; // Clear current list
+            let total = 0;
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} ($${item.price.toFixed(2)})`;
+                cartItemsList.appendChild(li);
+                total += item.price;
+            });
+            cartTotalSpan.textContent = total.toFixed(2);
+        }
+
+        function addToCart(productId, productName, productPrice) {
+            cart.push({ id: productId, name: productName, price: parseFloat(productPrice) });
+            updateCartCount();
+            alert(`${productName} ha sido añadido al carrito!`); // Simple confirmation
+            console.log('Current cart:', cart); // For debugging
+        }
+
+        // Event listeners for "Add to Cart" buttons
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent the parent div's click from firing
+                const productItem = event.target.closest('.product-item');
+                if (productItem) {
+                    const productId = productItem.dataset.productId;
+                    const productName = productItem.dataset.productName;
+                    const productPrice = productItem.dataset.productPrice;
+                    addToCart(productId, productName, productPrice);
+                }
+            });
+        });
+
+        // Event listeners for opening/closing cart overlay
+        if (cartButtonDesktop) {
+            cartButtonDesktop.addEventListener('click', () => {
+                renderCartItems();
+                cartOverlay.classList.remove('hidden');
+            });
+        }
+        if (cartButtonMobile) {
+            cartButtonMobile.addEventListener('click', () => {
+                renderCartItems();
+                cartOverlay.classList.remove('hidden');
+            });
+        }
+        if (closeCartOverlay) {
+            closeCartOverlay.addEventListener('click', () => {
+                cartOverlay.classList.add('hidden');
+            });
+        }
+
+        // Initial cart count update
+        updateCartCount();
+
+        // Optional: Implement the scroll animation if not already in style.css or script.js
+        const animateOnScrollElements = document.querySelectorAll('.animate-on-scroll');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up'); // Define this animation in CSS if not present
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                } else {
+                    // Optionally reset if you want elements to re-animate on scroll back
+                    // entry.target.classList.remove('animate-fade-in-up');
+                    // entry.target.classList.add('opacity-0', 'translate-y-10');
+                }
+            });
+        }, {
+            threshold: 0.1 // Trigger when 10% of the element is visible
+        });
+
+        animateOnScrollElements.forEach(element => {
+            observer.observe(element);
+        });
+
+    </script>
+    <script src="script.js"></script>
 </body>
 </html>
